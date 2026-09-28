@@ -1,0 +1,6 @@
+{
+  "name": "Campus Life Web App",
+  "description": "Comprehensive Campus Life management portal for students and college administration hierarchy (Principal, Dean, HOD, Faculty/Staff) featuring attendance, timetables, complaints, leaves, certificates, previous examination papers, real-time notifications, and an AI Study Assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

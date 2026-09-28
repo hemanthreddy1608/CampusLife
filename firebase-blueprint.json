@@ -1,0 +1,224 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile for students, faculty, and administrators",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["student", "admin"] },
+        "adminHierarchy": { "type": "string", "enum": ["Principal", "Dean", "HOD", "Faculty/Staff"] },
+        "studentId": { "type": "string" },
+        "department": { "type": "string" },
+        "year": { "type": "string" },
+        "semester": { "type": "string" },
+        "phone": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "inactive"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email", "role"]
+    },
+    "AttendanceRecord": {
+      "title": "AttendanceRecord",
+      "description": "Academic attendance record for a student in a specific course session",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "rollNo": { "type": "string" },
+        "subjectCode": { "type": "string" },
+        "subjectName": { "type": "string" },
+        "date": { "type": "string" },
+        "status": { "type": "string", "enum": ["Present", "Absent", "Excused"] },
+        "department": { "type": "string" },
+        "semester": { "type": "string" },
+        "markedBy": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["studentId", "subjectCode", "date", "status"]
+    },
+    "TimetableEntry": {
+      "title": "TimetableEntry",
+      "description": "Weekly course timetable lecture slot",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "day": { "type": "string" },
+        "period": { "type": "string" },
+        "subject": { "type": "string" },
+        "subjectCode": { "type": "string" },
+        "faculty": { "type": "string" },
+        "room": { "type": "string" },
+        "department": { "type": "string" },
+        "semester": { "type": "string" },
+        "published": { "type": "boolean" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["day", "period", "subject", "room", "department"]
+    },
+    "HostelComplaint": {
+      "title": "HostelComplaint",
+      "description": "Hostel maintenance or campus facility repair complaint ticket",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "rollNo": { "type": "string" },
+        "roomNo": { "type": "string" },
+        "hostelBlock": { "type": "string" },
+        "category": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string", "enum": ["Submitted", "Acknowledged", "Work in Progress", "Resolved", "Closed"] },
+        "priority": { "type": "string", "enum": ["Low", "Medium", "High", "Critical"] },
+        "feedback": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "resolvedAt": { "type": "string" }
+      },
+      "required": ["studentId", "category", "title", "description", "status"]
+    },
+    "LeaveRequest": {
+      "title": "LeaveRequest",
+      "description": "Official student leave application for academic or personal reasons",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "rollNo": { "type": "string" },
+        "department": { "type": "string" },
+        "fromDate": { "type": "string" },
+        "toDate": { "type": "string" },
+        "reason": { "type": "string" },
+        "emergencyContact": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "Approved by HOD", "Approved by Dean", "Rejected"] },
+        "adminRemarks": { "type": "string" },
+        "reviewedBy": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["studentId", "fromDate", "toDate", "reason", "status"]
+    },
+    "CertificateRequest": {
+      "title": "CertificateRequest",
+      "description": "Student certificate issuance request (Bonafide, Conduct, NOC, etc.)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "rollNo": { "type": "string" },
+        "department": { "type": "string" },
+        "certificateType": { "type": "string" },
+        "purpose": { "type": "string" },
+        "status": { "type": "string", "enum": ["Pending", "Processing", "Issued", "Rejected"] },
+        "issuedDate": { "type": "string" },
+        "issuedBy": { "type": "string" },
+        "downloadUrl": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["studentId", "certificateType", "purpose", "status"]
+    },
+    "CampusNotification": {
+      "title": "CampusNotification",
+      "description": "Campus announcements and targeted role-based dispatches",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "targetRole": { "type": "string", "enum": ["all", "student", "admin"] },
+        "department": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string" },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "message", "targetRole"]
+    },
+    "PreviousPaper": {
+      "title": "PreviousPaper",
+      "description": "Archived examination question paper",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "branch": { "type": "string" },
+        "academicYear": { "type": "string" },
+        "semester": { "type": "string" },
+        "subject": { "type": "string" },
+        "examType": { "type": "string" },
+        "downloadUrl": { "type": "string" },
+        "fileSize": { "type": "string" },
+        "uploadedBy": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["title", "branch", "subject", "academicYear"]
+    },
+    "SubjectItem": {
+      "title": "SubjectItem",
+      "description": "Course catalog syllabus subject item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "code": { "type": "string" },
+        "department": { "type": "string" },
+        "semester": { "type": "string" },
+        "credits": { "type": "number" },
+        "facultyName": { "type": "string" },
+        "syllabusOverview": { "type": "string" }
+      },
+      "required": ["name", "code", "department"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile credentials and role assignments"
+    },
+    "/students/{studentId}": {
+      "schema": "UserProfile",
+      "description": "Student index records"
+    },
+    "/admins/{adminId}": {
+      "schema": "UserProfile",
+      "description": "Administrative authority records"
+    },
+    "/attendance/{attendanceId}": {
+      "schema": "AttendanceRecord",
+      "description": "Student attendance session logs"
+    },
+    "/timetable/{timetableId}": {
+      "schema": "TimetableEntry",
+      "description": "Weekly course timetable entries"
+    },
+    "/complaints/{complaintId}": {
+      "schema": "HostelComplaint",
+      "description": "Maintenance and facility complaints"
+    },
+    "/leaveRequests/{requestId}": {
+      "schema": "LeaveRequest",
+      "description": "Official student leave requests"
+    },
+    "/certificateRequests/{requestId}": {
+      "schema": "CertificateRequest",
+      "description": "Official certificate requests"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "CampusNotification",
+      "description": "Campus announcements and role notices"
+    },
+    "/previousPapers/{paperId}": {
+      "schema": "PreviousPaper",
+      "description": "Archived exam papers"
+    },
+    "/subjects/{subjectId}": {
+      "schema": "SubjectItem",
+      "description": "Academic course subjects catalogue"
+    }
+  }
+}
